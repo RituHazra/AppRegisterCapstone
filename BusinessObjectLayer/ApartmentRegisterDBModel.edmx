@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ApartmentRegisterDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_ApartmentMaster">
+          <Key>
+            <PropertyRef Name="ApartmentId" />
+          </Key>
+          <Property Name="ApartmentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApartmentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Builder" Type="nvarchar" MaxLength="50" />
+          <Property Name="Number_of_Flats" Type="tinyint" />
+          <Property Name="AdminId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ass_Pres" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ass_Pres_EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ass_Sec" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ass_Sec_EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ass_Manager" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ass_Manager_EmailId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_FlatCategoryMaster">
+          <Key>
+            <PropertyRef Name="FlatCategoryId" />
+          </Key>
+          <Property Name="FlatCategoryId" Type="tinyint" Nullable="false" />
+          <Property Name="FlatCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaInSqft" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_FlatMaster">
+          <Key>
+            <PropertyRef Name="FlatId" />
+          </Key>
+          <Property Name="FlatId" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="OwnerId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsOnRent" Type="bit" />
+          <Property Name="IsVerifiedByAdmin" Type="bit" />
+          <Property Name="FlatCategoryId" Type="tinyint" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="OccupantId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApartmentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_RequestRegister">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RequestTypeId" Type="nvarchar" MaxLength="50" />
+          <Property Name="RequestStatusId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsExternalVendorRequired" Type="bit" />
+          <Property Name="VendorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="VendorContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="VendorRole" Type="nvarchar(max)" />
+          <Property Name="IsApprovedByAdmin" Type="bit" />
+          <Property Name="RejectionReason" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsUrgent" Type="bit" />
+          <Property Name="FlatId" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_RequestStatusMaster">
+          <Key>
+            <PropertyRef Name="RequestStatusId" />
+          </Key>
+          <Property Name="RequestStatusId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RequestStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_RequestTypeMaster">
+          <Key>
+            <PropertyRef Name="RequestTypeId" />
+          </Key>
+          <Property Name="RequestTypeId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RequestTypeDesc" Type="nvarchar" MaxLength="50" />
+          <Property Name="SLA_in_hours" Type="tinyint" />
+          <Property Name="IsChargeable" Type="bit" />
+          <Property Name="Charges" Type="money" />
+          <Property Name="LastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_ResidentMaster">
+          <Key>
+            <PropertyRef Name="ResidentId" />
+          </Key>
+          <Property Name="ResidentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResidentName" Type="nvarchar(max)" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="FlatId" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsOwner" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_RolesMaster">
+          <Key>
+            <PropertyRef Name="RoleTypeId" />
+          </Key>
+          <Property Name="RoleTypeId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_UserRegisterMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResidentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="LoginId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_FlatMaster_FlatCategoryMaster">
+          <End Role="tbl_FlatCategoryMaster" Type="Self.tbl_FlatCategoryMaster" Multiplicity="0..1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_FlatCategoryMaster">
+              <PropertyRef Name="FlatCategoryId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="FlatCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ApartmentMaster_tbl_RolesMaster">
+          <End Role="tbl_RolesMaster" Type="Self.tbl_RolesMaster" Multiplicity="1" />
+          <End Role="tbl_ApartmentMaster" Type="Self.tbl_ApartmentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_RolesMaster">
+              <PropertyRef Name="RoleTypeId" />
+            </Principal>
+            <Dependent Role="tbl_ApartmentMaster">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_FlatMaster_tbl_ApartmentMaster">
+          <End Role="tbl_ApartmentMaster" Type="Self.tbl_ApartmentMaster" Multiplicity="1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ApartmentMaster">
+              <PropertyRef Name="ApartmentId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="ApartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_FlatMaster_tbl_ResidentMaster">
+          <End Role="tbl_ResidentMaster" Type="Self.tbl_ResidentMaster" Multiplicity="1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ResidentMaster">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="OccupantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_FlatMaster_tbl_ResidentMaster1">
+          <End Role="tbl_ResidentMaster" Type="Self.tbl_ResidentMaster" Multiplicity="1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ResidentMaster">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_RequestRegister_tbl_FlatMaster">
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="1" />
+          <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_FlatMaster">
+              <PropertyRef Name="FlatId" />
+            </Principal>
+            <Dependent Role="tbl_RequestRegister">
+              <PropertyRef Name="FlatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_RequestRegister_tbl_RequestStatusMaster1">
+          <End Role="tbl_RequestStatusMaster" Type="Self.tbl_RequestStatusMaster" Multiplicity="0..1" />
+          <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_RequestStatusMaster">
+              <PropertyRef Name="RequestStatusId" />
+            </Principal>
+            <Dependent Role="tbl_RequestRegister">
+              <PropertyRef Name="RequestStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_RequestRegister_tbl_RequestTypeMaster1">
+          <End Role="tbl_RequestTypeMaster" Type="Self.tbl_RequestTypeMaster" Multiplicity="0..1" />
+          <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_RequestTypeMaster">
+              <PropertyRef Name="RequestTypeId" />
+            </Principal>
+            <Dependent Role="tbl_RequestRegister">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_UserRegisterMaster_tbl_ResidentMaster">
+          <End Role="tbl_ResidentMaster" Type="Self.tbl_ResidentMaster" Multiplicity="1" />
+          <End Role="tbl_UserRegisterMaster" Type="Self.tbl_UserRegisterMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ResidentMaster">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="tbl_UserRegisterMaster">
+              <PropertyRef Name="ResidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ApartmentRegisterDBModelStoreContainer">
+          <EntitySet Name="tbl_ApartmentMaster" EntityType="Self.tbl_ApartmentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_FlatCategoryMaster" EntityType="Self.tbl_FlatCategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_FlatMaster" EntityType="Self.tbl_FlatMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RequestRegister" EntityType="Self.tbl_RequestRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RequestStatusMaster" EntityType="Self.tbl_RequestStatusMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RequestTypeMaster" EntityType="Self.tbl_RequestTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ResidentMaster" EntityType="Self.tbl_ResidentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RolesMaster" EntityType="Self.tbl_RolesMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_UserRegisterMaster" EntityType="Self.tbl_UserRegisterMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FlatMaster_FlatCategoryMaster" Association="Self.FK_FlatMaster_FlatCategoryMaster">
+            <End Role="tbl_FlatCategoryMaster" EntitySet="tbl_FlatCategoryMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ApartmentMaster_tbl_RolesMaster" Association="Self.FK_tbl_ApartmentMaster_tbl_RolesMaster">
+            <End Role="tbl_RolesMaster" EntitySet="tbl_RolesMaster" />
+            <End Role="tbl_ApartmentMaster" EntitySet="tbl_ApartmentMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FlatMaster_tbl_ApartmentMaster" Association="Self.FK_tbl_FlatMaster_tbl_ApartmentMaster">
+            <End Role="tbl_ApartmentMaster" EntitySet="tbl_ApartmentMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FlatMaster_tbl_ResidentMaster" Association="Self.FK_tbl_FlatMaster_tbl_ResidentMaster">
+            <End Role="tbl_ResidentMaster" EntitySet="tbl_ResidentMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FlatMaster_tbl_ResidentMaster1" Association="Self.FK_tbl_FlatMaster_tbl_ResidentMaster1">
+            <End Role="tbl_ResidentMaster" EntitySet="tbl_ResidentMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_RequestRegister_tbl_FlatMaster" Association="Self.FK_tbl_RequestRegister_tbl_FlatMaster">
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+            <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_RequestRegister_tbl_RequestStatusMaster1" Association="Self.FK_tbl_RequestRegister_tbl_RequestStatusMaster1">
+            <End Role="tbl_RequestStatusMaster" EntitySet="tbl_RequestStatusMaster" />
+            <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_RequestRegister_tbl_RequestTypeMaster1" Association="Self.FK_tbl_RequestRegister_tbl_RequestTypeMaster1">
+            <End Role="tbl_RequestTypeMaster" EntitySet="tbl_RequestTypeMaster" />
+            <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_UserRegisterMaster_tbl_ResidentMaster" Association="Self.FK_tbl_UserRegisterMaster_tbl_ResidentMaster">
+            <End Role="tbl_ResidentMaster" EntitySet="tbl_ResidentMaster" />
+            <End Role="tbl_UserRegisterMaster" EntitySet="tbl_UserRegisterMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ApartmentRegisterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_ApartmentMaster">
+          <Key>
+            <PropertyRef Name="ApartmentId" />
+          </Key>
+          <Property Name="ApartmentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Builder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Number_of_Flats" Type="Byte" />
+          <Property Name="AdminId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ass_Pres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ass_Pres_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ass_Sec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ass_Sec_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ass_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ass_Manager_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_RolesMaster" Relationship="Self.FK_tbl_ApartmentMaster_tbl_RolesMaster" FromRole="tbl_ApartmentMaster" ToRole="tbl_RolesMaster" />
+          <NavigationProperty Name="tbl_FlatMaster" Relationship="Self.FK_tbl_FlatMaster_tbl_ApartmentMaster" FromRole="tbl_ApartmentMaster" ToRole="tbl_FlatMaster" />
+        </EntityType>
+        <EntityType Name="tbl_FlatCategoryMaster">
+          <Key>
+            <PropertyRef Name="FlatCategoryId" />
+          </Key>
+          <Property Name="FlatCategoryId" Type="Byte" Nullable="false" />
+          <Property Name="FlatCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaInSqft" Type="Int32" />
+          <NavigationProperty Name="tbl_FlatMaster" Relationship="Self.FK_FlatMaster_FlatCategoryMaster" FromRole="tbl_FlatCategoryMaster" ToRole="tbl_FlatMaster" />
+        </EntityType>
+        <EntityType Name="tbl_FlatMaster">
+          <Key>
+            <PropertyRef Name="FlatId" />
+          </Key>
+          <Property Name="FlatId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsOnRent" Type="Boolean" />
+          <Property Name="IsVerifiedByAdmin" Type="Boolean" />
+          <Property Name="FlatCategoryId" Type="Byte" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="OccupantId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApartmentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_ApartmentMaster" Relationship="Self.FK_tbl_FlatMaster_tbl_ApartmentMaster" FromRole="tbl_FlatMaster" ToRole="tbl_ApartmentMaster" />
+          <NavigationProperty Name="tbl_FlatCategoryMaster" Relationship="Self.FK_FlatMaster_FlatCategoryMaster" FromRole="tbl_FlatMaster" ToRole="tbl_FlatCategoryMaster" />
+          <NavigationProperty Name="tbl_ResidentMaster" Relationship="Self.FK_tbl_FlatMaster_tbl_ResidentMaster" FromRole="tbl_FlatMaster" ToRole="tbl_ResidentMaster" />
+          <NavigationProperty Name="tbl_ResidentMaster1" Relationship="Self.FK_tbl_FlatMaster_tbl_ResidentMaster1" FromRole="tbl_FlatMaster" ToRole="tbl_ResidentMaster" />
+          <NavigationProperty Name="tbl_RequestRegister" Relationship="Self.FK_tbl_RequestRegister_tbl_FlatMaster" FromRole="tbl_FlatMaster" ToRole="tbl_RequestRegister" />
+        </EntityType>
+        <EntityType Name="tbl_RequestRegister">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequestTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RequestStatusId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsExternalVendorRequired" Type="Boolean" />
+          <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VendorContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VendorRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsApprovedByAdmin" Type="Boolean" />
+          <Property Name="RejectionReason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsUrgent" Type="Boolean" />
+          <Property Name="FlatId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_FlatMaster" Relationship="Self.FK_tbl_RequestRegister_tbl_FlatMaster" FromRole="tbl_RequestRegister" ToRole="tbl_FlatMaster" />
+          <NavigationProperty Name="tbl_RequestStatusMaster" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestStatusMaster1" FromRole="tbl_RequestRegister" ToRole="tbl_RequestStatusMaster" />
+          <NavigationProperty Name="tbl_RequestTypeMaster" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestTypeMaster1" FromRole="tbl_RequestRegister" ToRole="tbl_RequestTypeMaster" />
+        </EntityType>
+        <EntityType Name="tbl_RequestStatusMaster">
+          <Key>
+            <PropertyRef Name="RequestStatusId" />
+          </Key>
+          <Property Name="RequestStatusId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_RequestRegister" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestStatusMaster1" FromRole="tbl_RequestStatusMaster" ToRole="tbl_RequestRegister" />
+        </EntityType>
+        <EntityType Name="tbl_RequestTypeMaster">
+          <Key>
+            <PropertyRef Name="RequestTypeId" />
+          </Key>
+          <Property Name="RequestTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequestTypeDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SLA_in_hours" Type="Byte" />
+          <Property Name="IsChargeable" Type="Boolean" />
+          <Property Name="Charges" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbl_RequestRegister" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestTypeMaster1" FromRole="tbl_RequestTypeMaster" ToRole="tbl_RequestRegister" />
+        </EntityType>
+        <EntityType Name="tbl_ResidentMaster">
+          <Key>
+            <PropertyRef Name="ResidentId" />
+          </Key>
+          <Property Name="ResidentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResidentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FlatId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsOwner" Type="Boolean" />
+          <NavigationProperty Name="tbl_FlatMaster" Relationship="Self.FK_tbl_FlatMaster_tbl_ResidentMaster" FromRole="tbl_ResidentMaster" ToRole="tbl_FlatMaster" />
+          <NavigationProperty Name="tbl_FlatMaster1" Relationship="Self.FK_tbl_FlatMaster_tbl_ResidentMaster1" FromRole="tbl_ResidentMaster" ToRole="tbl_FlatMaster" />
+          <NavigationProperty Name="tbl_UserRegisterMaster" Relationship="Self.FK_tbl_UserRegisterMaster_tbl_ResidentMaster" FromRole="tbl_ResidentMaster" ToRole="tbl_UserRegisterMaster" />
+        </EntityType>
+        <EntityType Name="tbl_RolesMaster">
+          <Key>
+            <PropertyRef Name="RoleTypeId" />
+          </Key>
+          <Property Name="RoleTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ApartmentMaster" Relationship="Self.FK_tbl_ApartmentMaster_tbl_RolesMaster" FromRole="tbl_RolesMaster" ToRole="tbl_ApartmentMaster" />
+        </EntityType>
+        <EntityType Name="tbl_UserRegisterMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResidentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="LoginId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ResidentMaster" Relationship="Self.FK_tbl_UserRegisterMaster_tbl_ResidentMaster" FromRole="tbl_UserRegisterMaster" ToRole="tbl_ResidentMaster" />
+        </EntityType>
+        <Association Name="FK_tbl_ApartmentMaster_tbl_RolesMaster">
+          <End Role="tbl_RolesMaster" Type="Self.tbl_RolesMaster" Multiplicity="1" />
+          <End Role="tbl_ApartmentMaster" Type="Self.tbl_ApartmentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_RolesMaster">
+              <PropertyRef Name="RoleTypeId" />
+            </Principal>
+            <Dependent Role="tbl_ApartmentMaster">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_FlatMaster_tbl_ApartmentMaster">
+          <End Role="tbl_ApartmentMaster" Type="Self.tbl_ApartmentMaster" Multiplicity="1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ApartmentMaster">
+              <PropertyRef Name="ApartmentId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="ApartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FlatMaster_FlatCategoryMaster">
+          <End Role="tbl_FlatCategoryMaster" Type="Self.tbl_FlatCategoryMaster" Multiplicity="0..1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_FlatCategoryMaster">
+              <PropertyRef Name="FlatCategoryId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="FlatCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_FlatMaster_tbl_ResidentMaster">
+          <End Role="tbl_ResidentMaster" Type="Self.tbl_ResidentMaster" Multiplicity="1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ResidentMaster">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="OccupantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_FlatMaster_tbl_ResidentMaster1">
+          <End Role="tbl_ResidentMaster" Type="Self.tbl_ResidentMaster" Multiplicity="1" />
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ResidentMaster">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="tbl_FlatMaster">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_RequestRegister_tbl_FlatMaster">
+          <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="1" />
+          <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_FlatMaster">
+              <PropertyRef Name="FlatId" />
+            </Principal>
+            <Dependent Role="tbl_RequestRegister">
+              <PropertyRef Name="FlatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_RequestRegister_tbl_RequestStatusMaster1">
+          <End Role="tbl_RequestStatusMaster" Type="Self.tbl_RequestStatusMaster" Multiplicity="0..1" />
+          <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_RequestStatusMaster">
+              <PropertyRef Name="RequestStatusId" />
+            </Principal>
+            <Dependent Role="tbl_RequestRegister">
+              <PropertyRef Name="RequestStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_RequestRegister_tbl_RequestTypeMaster1">
+          <End Role="tbl_RequestTypeMaster" Type="Self.tbl_RequestTypeMaster" Multiplicity="0..1" />
+          <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_RequestTypeMaster">
+              <PropertyRef Name="RequestTypeId" />
+            </Principal>
+            <Dependent Role="tbl_RequestRegister">
+              <PropertyRef Name="RequestTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_UserRegisterMaster_tbl_ResidentMaster">
+          <End Role="tbl_ResidentMaster" Type="Self.tbl_ResidentMaster" Multiplicity="1" />
+          <End Role="tbl_UserRegisterMaster" Type="Self.tbl_UserRegisterMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ResidentMaster">
+              <PropertyRef Name="ResidentId" />
+            </Principal>
+            <Dependent Role="tbl_UserRegisterMaster">
+              <PropertyRef Name="ResidentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ApartmentRegister_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_ApartmentMaster" EntityType="Self.tbl_ApartmentMaster" />
+          <EntitySet Name="tbl_FlatCategoryMaster" EntityType="Self.tbl_FlatCategoryMaster" />
+          <EntitySet Name="tbl_FlatMaster" EntityType="Self.tbl_FlatMaster" />
+          <EntitySet Name="tbl_RequestRegister" EntityType="Self.tbl_RequestRegister" />
+          <EntitySet Name="tbl_RequestStatusMaster" EntityType="Self.tbl_RequestStatusMaster" />
+          <EntitySet Name="tbl_RequestTypeMaster" EntityType="Self.tbl_RequestTypeMaster" />
+          <EntitySet Name="tbl_ResidentMaster" EntityType="Self.tbl_ResidentMaster" />
+          <EntitySet Name="tbl_RolesMaster" EntityType="Self.tbl_RolesMaster" />
+          <EntitySet Name="tbl_UserRegisterMaster" EntityType="Self.tbl_UserRegisterMaster" />
+          <AssociationSet Name="FK_tbl_ApartmentMaster_tbl_RolesMaster" Association="Self.FK_tbl_ApartmentMaster_tbl_RolesMaster">
+            <End Role="tbl_RolesMaster" EntitySet="tbl_RolesMaster" />
+            <End Role="tbl_ApartmentMaster" EntitySet="tbl_ApartmentMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FlatMaster_tbl_ApartmentMaster" Association="Self.FK_tbl_FlatMaster_tbl_ApartmentMaster">
+            <End Role="tbl_ApartmentMaster" EntitySet="tbl_ApartmentMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FlatMaster_FlatCategoryMaster" Association="Self.FK_FlatMaster_FlatCategoryMaster">
+            <End Role="tbl_FlatCategoryMaster" EntitySet="tbl_FlatCategoryMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FlatMaster_tbl_ResidentMaster" Association="Self.FK_tbl_FlatMaster_tbl_ResidentMaster">
+            <End Role="tbl_ResidentMaster" EntitySet="tbl_ResidentMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FlatMaster_tbl_ResidentMaster1" Association="Self.FK_tbl_FlatMaster_tbl_ResidentMaster1">
+            <End Role="tbl_ResidentMaster" EntitySet="tbl_ResidentMaster" />
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_RequestRegister_tbl_FlatMaster" Association="Self.FK_tbl_RequestRegister_tbl_FlatMaster">
+            <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+            <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_RequestRegister_tbl_RequestStatusMaster1" Association="Self.FK_tbl_RequestRegister_tbl_RequestStatusMaster1">
+            <End Role="tbl_RequestStatusMaster" EntitySet="tbl_RequestStatusMaster" />
+            <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_RequestRegister_tbl_RequestTypeMaster1" Association="Self.FK_tbl_RequestRegister_tbl_RequestTypeMaster1">
+            <End Role="tbl_RequestTypeMaster" EntitySet="tbl_RequestTypeMaster" />
+            <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_UserRegisterMaster_tbl_ResidentMaster" Association="Self.FK_tbl_UserRegisterMaster_tbl_ResidentMaster">
+            <End Role="tbl_ResidentMaster" EntitySet="tbl_ResidentMaster" />
+            <End Role="tbl_UserRegisterMaster" EntitySet="tbl_UserRegisterMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ApartmentRegisterDBModelStoreContainer" CdmEntityContainer="ApartmentRegister_DBEntities">
+          <EntitySetMapping Name="tbl_ApartmentMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_ApartmentMaster">
+              <MappingFragment StoreEntitySet="tbl_ApartmentMaster">
+                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+                <ScalarProperty Name="ApartmentName" ColumnName="ApartmentName" />
+                <ScalarProperty Name="Builder" ColumnName="Builder" />
+                <ScalarProperty Name="Number_of_Flats" ColumnName="Number_of_Flats" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Ass_Pres" ColumnName="Ass_Pres" />
+                <ScalarProperty Name="Ass_Pres_EmailId" ColumnName="Ass_Pres_EmailId" />
+                <ScalarProperty Name="Ass_Sec" ColumnName="Ass_Sec" />
+                <ScalarProperty Name="Ass_Sec_EmailId" ColumnName="Ass_Sec_EmailId" />
+                <ScalarProperty Name="Ass_Manager" ColumnName="Ass_Manager" />
+                <ScalarProperty Name="Ass_Manager_EmailId" ColumnName="Ass_Manager_EmailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_FlatCategoryMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_FlatCategoryMaster">
+              <MappingFragment StoreEntitySet="tbl_FlatCategoryMaster">
+                <ScalarProperty Name="FlatCategoryId" ColumnName="FlatCategoryId" />
+                <ScalarProperty Name="FlatCategory" ColumnName="FlatCategory" />
+                <ScalarProperty Name="AreaInSqft" ColumnName="AreaInSqft" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_FlatMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_FlatMaster">
+              <MappingFragment StoreEntitySet="tbl_FlatMaster">
+                <ScalarProperty Name="FlatId" ColumnName="FlatId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="IsOnRent" ColumnName="IsOnRent" />
+                <ScalarProperty Name="IsVerifiedByAdmin" ColumnName="IsVerifiedByAdmin" />
+                <ScalarProperty Name="FlatCategoryId" ColumnName="FlatCategoryId" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="OccupantId" ColumnName="OccupantId" />
+                <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RequestRegister">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RequestRegister">
+              <MappingFragment StoreEntitySet="tbl_RequestRegister">
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsExternalVendorRequired" ColumnName="IsExternalVendorRequired" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="VendorContactNumber" ColumnName="VendorContactNumber" />
+                <ScalarProperty Name="VendorRole" ColumnName="VendorRole" />
+                <ScalarProperty Name="IsApprovedByAdmin" ColumnName="IsApprovedByAdmin" />
+                <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+                <ScalarProperty Name="IsUrgent" ColumnName="IsUrgent" />
+                <ScalarProperty Name="FlatId" ColumnName="FlatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RequestStatusMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RequestStatusMaster">
+              <MappingFragment StoreEntitySet="tbl_RequestStatusMaster">
+                <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RequestTypeMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RequestTypeMaster">
+              <MappingFragment StoreEntitySet="tbl_RequestTypeMaster">
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="RequestTypeDesc" ColumnName="RequestTypeDesc" />
+                <ScalarProperty Name="SLA_in_hours" ColumnName="SLA_in_hours" />
+                <ScalarProperty Name="IsChargeable" ColumnName="IsChargeable" />
+                <ScalarProperty Name="Charges" ColumnName="Charges" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ResidentMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_ResidentMaster">
+              <MappingFragment StoreEntitySet="tbl_ResidentMaster">
+                <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
+                <ScalarProperty Name="ResidentName" ColumnName="ResidentName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="FlatId" ColumnName="FlatId" />
+                <ScalarProperty Name="IsOwner" ColumnName="IsOwner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RolesMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RolesMaster">
+              <MappingFragment StoreEntitySet="tbl_RolesMaster">
+                <ScalarProperty Name="RoleTypeId" ColumnName="RoleTypeId" />
+                <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_UserRegisterMaster">
+            <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_UserRegisterMaster">
+              <MappingFragment StoreEntitySet="tbl_UserRegisterMaster">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

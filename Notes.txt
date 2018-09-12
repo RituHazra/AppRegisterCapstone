@@ -1,0 +1,114 @@
+Classes
+
+1.FlatMaster
+-------------
+Flat No -PK
+FlatCategoryId
+OwnerId
+OccupantId
+IsOnRent
+IsVerifiedByAdmin
+
+
+2. FlatCategoryMaster
+-------------------
+FlatCategoryId
+FlatCategory
+AreaInSqft
+
+3. RequestTypeMaster
+-----------------
+RequestTypeNo
+RequestTypeDesc
+SLA
+IsChargeable
+Charges
+LastUpdated
+
+4. RolesMaster
+--------------
+RoleTypeId
+RoleType
+
+5. ApartmentMaster
+------------------
+Apartment Id
+Apartment name
+Builder
+Number of flats
+Admin Id
+[Ass_Pres] 
+[Ass_Pres_EmailId] 
+[Ass_Sec]
+[Ass_Sec_EmailId] 
+[Ass_Manager] 
+[Ass_Manager_EmailId] 
+
+6. RequestStatusMaster
+----------------------
+RequestStatusId
+RequestStatus
+
+7. RequestRegister
+----------------
+RequestNo
+RequestTypeNo
+IsUrgent
+Desciption
+Availability
+IsApprovedByAdmin
+IsExternalVendorRequired
+Vendor Name
+Vendor contact number
+Vendor Role
+RejectionReason
+RequestStatusId
+FlatId
+
+8. ResidentMaster
+---------------------
+ResidentId
+Name
+Contact Number
+Email id
+FlatId
+IsOwner
+
+
+9. UserRegister
+-------------------
+UserId
+ResidentId
+IsAdmin
+loginId
+password
+
+---------------------
+Roles/Responsibility:
+
+User
+-------------
+1. Register
+2. Request
+3. Edit request
+
+Admin
+---------------
+1. Admin
+2. Approve Request
+3. Approve registration once verified
+
+
+Objects:
+1. User
+2. Request
+3. flat
+
+Relationshsip:
+--------------
+User(1):Request(M)
+Category(1) : Request(M)
+
+ORM - Object Relations Mapping
+
+

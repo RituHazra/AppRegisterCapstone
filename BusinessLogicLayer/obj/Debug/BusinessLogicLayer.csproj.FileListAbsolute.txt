@@ -1,0 +1,14 @@
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csprojAssemblyReference.cache
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\BusinessObjectLayer.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\EntityFramework.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\BusinessObjectLayer.pdb
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\BusinessObjectLayer.dll.config
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\bin\Debug\EntityFramework.xml
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.CopyComplete

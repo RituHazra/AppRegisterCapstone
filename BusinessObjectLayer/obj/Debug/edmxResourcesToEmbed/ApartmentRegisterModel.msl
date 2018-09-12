@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ApartmentRegisterDBModelStoreContainer" CdmEntityContainer="ApartmentRegisterDBEntities">
+    <EntitySetMapping Name="tbl_ApartmentMaster">
+      <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_ApartmentMaster">
+        <MappingFragment StoreEntitySet="tbl_ApartmentMaster">
+          <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
+          <ScalarProperty Name="ApartmentName" ColumnName="ApartmentName" />
+          <ScalarProperty Name="Builder" ColumnName="Builder" />
+          <ScalarProperty Name="Number_of_Flats" ColumnName="Number_of_Flats" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="Ass_Pres" ColumnName="Ass_Pres" />
+          <ScalarProperty Name="Ass_Pres_EmailId" ColumnName="Ass_Pres_EmailId" />
+          <ScalarProperty Name="Ass_Sec" ColumnName="Ass_Sec" />
+          <ScalarProperty Name="Ass_Sec_EmailId" ColumnName="Ass_Sec_EmailId" />
+          <ScalarProperty Name="Ass_Manager" ColumnName="Ass_Manager" />
+          <ScalarProperty Name="Ass_Manager_EmailId" ColumnName="Ass_Manager_EmailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_FlatCategoryMaster">
+      <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_FlatCategoryMaster">
+        <MappingFragment StoreEntitySet="tbl_FlatCategoryMaster">
+          <ScalarProperty Name="FlatCategoryId" ColumnName="FlatCategoryId" />
+          <ScalarProperty Name="FlatCategory" ColumnName="FlatCategory" />
+          <ScalarProperty Name="AreaInSqft" ColumnName="AreaInSqft" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_FlatMaster">
+      <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_FlatMaster">
+        <MappingFragment StoreEntitySet="tbl_FlatMaster">
+          <ScalarProperty Name="FlatId" ColumnName="FlatId" />
+          <ScalarProperty Name="PrimaryOwnerName" ColumnName="PrimaryOwnerName" />
+          <ScalarProperty Name="PrimaryOwnerContact" ColumnName="PrimaryOwnerContact" />
+          <ScalarProperty Name="PrimaryResidentName" ColumnName="PrimaryResidentName" />
+          <ScalarProperty Name="PrimaryResidentContact" ColumnName="PrimaryResidentContact" />
+          <ScalarProperty Name="IsOnRent" ColumnName="IsOnRent" />
+          <ScalarProperty Name="IsVerifiedByAdmi" ColumnName="IsVerifiedByAdmi" />
+          <ScalarProperty Name="FlatCategoryId" ColumnName="FlatCategoryId" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RequestRegister">
+      <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RequestRegister">
+        <MappingFragment StoreEntitySet="tbl_RequestRegister">
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+          <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsExternalVendorRequired" ColumnName="IsExternalVendorRequired" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="VendorContactNumber" ColumnName="VendorContactNumber" />
+          <ScalarProperty Name="VendorRole" ColumnName="VendorRole" />
+          <ScalarProperty Name="IsApprovedByAdmin" ColumnName="IsApprovedByAdmin" />
+          <ScalarProperty Name="RejectionReason" ColumnName="RejectionReason" />
+          <ScalarProperty Name="IsUrgent" ColumnName="IsUrgent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RequestStatusMaster">
+      <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RequestStatusMaster">
+        <MappingFragment StoreEntitySet="tbl_RequestStatusMaster">
+          <ScalarProperty Name="RequestStatusId" ColumnName="RequestStatusId" />
+          <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RequestTypeMaster">
+      <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RequestTypeMaster">
+        <MappingFragment StoreEntitySet="tbl_RequestTypeMaster">
+          <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+          <ScalarProperty Name="RequestTypeDesc" ColumnName="RequestTypeDesc" />
+          <ScalarProperty Name="SLA_in_hours" ColumnName="SLA_in_hours" />
+          <ScalarProperty Name="IsChargeable" ColumnName="IsChargeable" />
+          <ScalarProperty Name="Charges" ColumnName="Charges" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_RolesMaster">
+      <EntityTypeMapping TypeName="ApartmentRegisterDBModel.tbl_RolesMaster">
+        <MappingFragment StoreEntitySet="tbl_RolesMaster">
+          <ScalarProperty Name="RoleTypeId" ColumnName="RoleTypeId" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

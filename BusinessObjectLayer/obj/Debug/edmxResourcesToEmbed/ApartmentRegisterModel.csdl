@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ApartmentRegisterDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_ApartmentMaster">
+    <Key>
+      <PropertyRef Name="ApartmentId" />
+    </Key>
+    <Property Name="ApartmentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Builder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Number_of_Flats" Type="Byte" />
+    <Property Name="AdminId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Ass_Pres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ass_Pres_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ass_Sec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ass_Sec_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ass_Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ass_Manager_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_FlatCategoryMaster">
+    <Key>
+      <PropertyRef Name="FlatCategoryId" />
+    </Key>
+    <Property Name="FlatCategoryId" Type="Byte" Nullable="false" />
+    <Property Name="FlatCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AreaInSqft" Type="Int32" />
+    <NavigationProperty Name="tbl_FlatMaster" Relationship="Self.FK_FlatMaster_FlatCategoryMaster" FromRole="tbl_FlatCategoryMaster" ToRole="tbl_FlatMaster" />
+  </EntityType>
+  <EntityType Name="tbl_FlatMaster">
+    <Key>
+      <PropertyRef Name="FlatId" />
+    </Key>
+    <Property Name="FlatId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PrimaryOwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrimaryOwnerContact" Type="Int32" />
+    <Property Name="PrimaryResidentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrimaryResidentContact" Type="Int32" />
+    <Property Name="IsOnRent" Type="Boolean" />
+    <Property Name="IsVerifiedByAdmi" Type="Boolean" />
+    <Property Name="FlatCategoryId" Type="Byte" />
+    <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_FlatCategoryMaster" Relationship="Self.FK_FlatMaster_FlatCategoryMaster" FromRole="tbl_FlatMaster" ToRole="tbl_FlatCategoryMaster" />
+  </EntityType>
+  <EntityType Name="tbl_RequestRegister">
+    <Key>
+      <PropertyRef Name="RequestId" />
+    </Key>
+    <Property Name="RequestId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RequestStatusId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsExternalVendorRequired" Type="Boolean" />
+    <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VendorContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VendorRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsApprovedByAdmin" Type="Boolean" />
+    <Property Name="RejectionReason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsUrgent" Type="Boolean" />
+    <NavigationProperty Name="tbl_RequestStatusMaster" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestStatusMaster1" FromRole="tbl_RequestRegister" ToRole="tbl_RequestStatusMaster" />
+    <NavigationProperty Name="tbl_RequestTypeMaster" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestTypeMaster1" FromRole="tbl_RequestRegister" ToRole="tbl_RequestTypeMaster" />
+  </EntityType>
+  <EntityType Name="tbl_RequestStatusMaster">
+    <Key>
+      <PropertyRef Name="RequestStatusId" />
+    </Key>
+    <Property Name="RequestStatusId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_RequestRegister" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestStatusMaster1" FromRole="tbl_RequestStatusMaster" ToRole="tbl_RequestRegister" />
+  </EntityType>
+  <EntityType Name="tbl_RequestTypeMaster">
+    <Key>
+      <PropertyRef Name="RequestTypeId" />
+    </Key>
+    <Property Name="RequestTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestTypeDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SLA_in_hours" Type="Byte" />
+    <Property Name="IsChargeable" Type="Boolean" />
+    <Property Name="Charges" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbl_RequestRegister" Relationship="Self.FK_tbl_RequestRegister_tbl_RequestTypeMaster1" FromRole="tbl_RequestTypeMaster" ToRole="tbl_RequestRegister" />
+  </EntityType>
+  <EntityType Name="tbl_RolesMaster">
+    <Key>
+      <PropertyRef Name="RoleTypeId" />
+    </Key>
+    <Property Name="RoleTypeId" Type="Byte" Nullable="false" />
+    <Property Name="RoleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_FlatMaster_FlatCategoryMaster">
+    <End Role="tbl_FlatCategoryMaster" Type="Self.tbl_FlatCategoryMaster" Multiplicity="0..1" />
+    <End Role="tbl_FlatMaster" Type="Self.tbl_FlatMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_FlatCategoryMaster">
+        <PropertyRef Name="FlatCategoryId" />
+      </Principal>
+      <Dependent Role="tbl_FlatMaster">
+        <PropertyRef Name="FlatCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_RequestRegister_tbl_RequestStatusMaster1">
+    <End Role="tbl_RequestStatusMaster" Type="Self.tbl_RequestStatusMaster" Multiplicity="0..1" />
+    <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RequestStatusMaster">
+        <PropertyRef Name="RequestStatusId" />
+      </Principal>
+      <Dependent Role="tbl_RequestRegister">
+        <PropertyRef Name="RequestStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_RequestRegister_tbl_RequestTypeMaster1">
+    <End Role="tbl_RequestTypeMaster" Type="Self.tbl_RequestTypeMaster" Multiplicity="0..1" />
+    <End Role="tbl_RequestRegister" Type="Self.tbl_RequestRegister" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_RequestTypeMaster">
+        <PropertyRef Name="RequestTypeId" />
+      </Principal>
+      <Dependent Role="tbl_RequestRegister">
+        <PropertyRef Name="RequestTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApartmentRegisterDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_ApartmentMaster" EntityType="Self.tbl_ApartmentMaster" />
+    <EntitySet Name="tbl_FlatCategoryMaster" EntityType="Self.tbl_FlatCategoryMaster" />
+    <EntitySet Name="tbl_FlatMaster" EntityType="Self.tbl_FlatMaster" />
+    <EntitySet Name="tbl_RequestRegister" EntityType="Self.tbl_RequestRegister" />
+    <EntitySet Name="tbl_RequestStatusMaster" EntityType="Self.tbl_RequestStatusMaster" />
+    <EntitySet Name="tbl_RequestTypeMaster" EntityType="Self.tbl_RequestTypeMaster" />
+    <EntitySet Name="tbl_RolesMaster" EntityType="Self.tbl_RolesMaster" />
+    <AssociationSet Name="FK_FlatMaster_FlatCategoryMaster" Association="Self.FK_FlatMaster_FlatCategoryMaster">
+      <End Role="tbl_FlatCategoryMaster" EntitySet="tbl_FlatCategoryMaster" />
+      <End Role="tbl_FlatMaster" EntitySet="tbl_FlatMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_RequestRegister_tbl_RequestStatusMaster1" Association="Self.FK_tbl_RequestRegister_tbl_RequestStatusMaster1">
+      <End Role="tbl_RequestStatusMaster" EntitySet="tbl_RequestStatusMaster" />
+      <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_RequestRegister_tbl_RequestTypeMaster1" Association="Self.FK_tbl_RequestRegister_tbl_RequestTypeMaster1">
+      <End Role="tbl_RequestTypeMaster" EntitySet="tbl_RequestTypeMaster" />
+      <End Role="tbl_RequestRegister" EntitySet="tbl_RequestRegister" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

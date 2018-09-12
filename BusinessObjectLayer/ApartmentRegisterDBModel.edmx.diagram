@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="790bac6ea4b348578e9e897b311cb2ee" Name="Diagram1">
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_ApartmentMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_FlatCategoryMaster" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_FlatMaster" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_RequestRegister" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_RequestStatusMaster" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_RequestTypeMaster" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_ResidentMaster" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_RolesMaster" Width="1.5" PointX="1.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ApartmentRegisterDBModel.tbl_UserRegisterMaster" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_ApartmentMaster_tbl_RolesMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_FlatMaster_tbl_ApartmentMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_FlatMaster_FlatCategoryMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_FlatMaster_tbl_ResidentMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_FlatMaster_tbl_ResidentMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_RequestRegister_tbl_FlatMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_RequestRegister_tbl_RequestStatusMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_RequestRegister_tbl_RequestTypeMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="ApartmentRegisterDBModel.FK_tbl_UserRegisterMaster_tbl_ResidentMaster" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

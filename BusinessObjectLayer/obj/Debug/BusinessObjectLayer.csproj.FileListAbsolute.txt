@@ -1,0 +1,12 @@
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\bin\Debug\BusinessObjectLayer.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\bin\Debug\BusinessObjectLayer.pdb
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\obj\Debug\BusinessObjectLayer.csprojAssemblyReference.cache
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\obj\Debug\BusinessObjectLayer.csproj.CoreCompileInputs.cache
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\obj\Debug\BusinessObjectLayer.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\obj\Debug\BusinessObjectLayer.pdb
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\bin\Debug\BusinessObjectLayer.dll.config
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\bin\Debug\EntityFramework.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\bin\Debug\EntityFramework.xml
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\RHAZR\Desktop\Ritu\Ritu\MVC 5\Projects\ApartmentRegister\BusinessObjectLayer\obj\Debug\BusinessObjectLayer.csproj.CopyComplete
